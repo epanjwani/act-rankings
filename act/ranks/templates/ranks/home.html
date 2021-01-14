@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load mathfilters %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Index</title>
+  </head>
+  <body>
+    {%if dict%}
+        <table>
+          <tr>
+            <th>Position</th>
+            <th>Name</th>
+            <th>League</th>
+            <th>Elo Rating</th>
+            <th>Change in Elo (from last ACT)</th>
+            <th>Avg. Competitor Elo</th>
+            <th>ACTs Ran</th>
+            <th>Avg. Points</th>
+          <tr>
+      {%for name, player in dict.items%}
+          <tr>
+            <th>{{forloop.counter}}</th>
+            <th>{{name}}</th>
+            <th>{{player.league}}</th>
+            <th>{{player.elo}}</th>
+            <th>{{player.elo_change}}</th>
+            {%if player.acts_ran != 0%}
+            <th>{{player.accum_competitor_elo|div:player.acts_ran}}</th>
+            {%else%}
+            <th>N/A</th>
+            {%endif%}
+            <th>{{player.acts_ran}}</th>
+            {%if player.acts_ran != 0%}
+            <th>{{player.total_points|div:player.acts_ran}}</th>
+            {%else%}
+            <th>N/A</th>
+            {%endif%}
+          <tr>
+          {%endfor%}
+        </table>
+      {%endif%}
+  </body>
+</html>
