@@ -10,5 +10,21 @@ def home(request):
     for player_object in players:
         player_dict[player_object.name] = player_object
     return render(request, "ranks/home.html", {'dict': player_dict})
+
+
+def race(request):
+    player_dict = {}
+    players = Player.objects.order_by('-race rating') #add variable for race rating into player model
+    for player_object in players:
+        player_dict[player_object.name] = player_object
+    return render(request, "ranks/race.html", {'dict': player_dict})
+
+
+def player(request):
+    race_dict = {}
+    races = Race.objects
+    for race_object in races:
+        race_dict[race_object.name] = race_object
+    return render(request, "ranks/player.html")
         
 

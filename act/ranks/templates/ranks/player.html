@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load mathfilters %} <!UNEDITED****** from race.html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Index</title>
+  </head>
+  <body>
+    {%if dict%}
+        <table>
+          <tr>
+            <th>Position</th>
+            <th>Name</th>
+            <th>Race Rating</th>
+            <th>1st</th>
+            <th>2nd</th>
+            <th>3rd</th>
+            <th>4th</th>
+          <tr>
+      {%for name, player in dict.items%}
+          <tr>
+            <th>{{forloop.counter}}</th>
+            <th>{{name}}</th>
+            <th>{{player.race rating}}</th> <!whatever the variable is in player model>
+            <th>{{player.number 1sts}}</th> <!whatever the variable is in player model>
+            <th>{{player.number 2nds}}</th> <!whatever the variable is in player model>
+            <th>{{player.number 3rds}}</th> <!whatever the variable is in player model>
+            <th>{{player.number 4ths}}</th> <!whatever the variable is in player model>
+          <tr>
+          {%endfor%}
+        </table>
+      {%endif%}
+  </body>
+</html>
