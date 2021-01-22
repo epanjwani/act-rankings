@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Player, PlayerEntry, Team, ACT
-from .forms import teamForm
+from .forms import actForm
 
 # Create your views here.
 
@@ -31,7 +31,30 @@ def player(request):
 
 def enterTeamData(request):
     if request.method == "GET":
-        form = teamForm(request.GET)
+        form = actForm(request.GET)
         if form.is_valid():
-            print('yay')
-    return render(request, 'ranks/teamData.html', {'form':form})
+            act = form.save(commit=False)
+            infoDict = {}
+            infoDict['name'] = act.name
+            infoDict['t1player1'] = act.t1player1.name
+            infoDict['t1player2'] = act.t1player2.name
+            infoDict['t1character_1'] = act.t1character_1
+            infoDict['t1character_2'] = act.t1character_2
+            infoDict['t2player1'] = act.t2player1.name
+            infoDict['t2player2'] = act.t2player2.name
+            infoDict['t2character_1'] = act.t2character_1
+            infoDict['t2character_2'] = act.t2character_2
+            infoDict['t3player1'] = act.t3player1.name
+            infoDict['t3player2'] = act.t3player2.name
+            infoDict['t3character_1'] = act.t3character_1
+            infoDict['t3character_2'] = act.t3character_2
+            infoDict['t4player1'] = act.t4player1.name
+            infoDict['t4player2'] = act.t4player2.name
+            infoDict['t4character_1'] = act.t4character_1
+            infoDict['t4character_2'] = act.t4character_2
+            request.session["currentACT"] = infoDict
+            return redirect('ranks:data2')
+    return render(request, 'ranks/teamData.html', {'actform':form})
+
+def enterData(request):
+    return render(request, "ranks/raceData.html")

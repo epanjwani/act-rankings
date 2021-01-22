@@ -5,17 +5,15 @@
     <title>Index</title>
   </head>
   <body>
-    <p>Create ACT Teams</p>
+    <p>Insert Race Data</p>
     <hr>
     {% if error%}
         <p> {{error}} </p>
     {% endif %}
     {% csrf_token %}
     <br>
-    <form method="get">
-      {{actform}}
-      <input type="submit" value="Submit">
-    </form>
+    {{raceform}}
+    <input type="submit" value="Submit">
     <br> 
     <br>
   </body>
