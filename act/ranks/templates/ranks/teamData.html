@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Index</title>
+  </head>
+  <body>
+    <p>TEAM DATA</p>
+    <hr>
+    {% if error%}
+        <p> {{error}} </p>
+    {% endif %}
+    {% csrf_token %}
+    {{form}}
+        {% comment %} 
+        {% for _ in 4 %}
+            {% with counter=forloop.counter|stringformat:"s"%}
+            {% with strname="team"|add:counter %}
+            {% endwith %}
+            {% endwith %}
+        {% endfor %}
+        {% endwith %}
+        {% endwith %}
+        {% endcomment %} 
+    </form> 
+    <br>
+  </body>
+</html>

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Player, PlayerEntry, Team, ACT
+from .forms import teamForm
 
 # Create your views here.
 
@@ -28,3 +29,9 @@ def player(request):
     return render(request, "ranks/player.html")
         
 
+def enterTeamData(request):
+    if request.method == "GET":
+        form = teamForm(request.GET)
+        if form.is_valid():
+            print('yay')
+    return render(request, 'ranks/teamData.html', {'form':form})
