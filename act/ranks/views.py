@@ -32,6 +32,7 @@ def player(request):
 def enterTeamData(request):
     if request.method == "GET":
         form = actForm(request.GET)
+        form.as_table()
         if form.is_valid():
             act = form.save(commit=False)
             infoDict = {}
@@ -53,8 +54,8 @@ def enterTeamData(request):
             infoDict['t4character_1'] = act.t4character_1
             infoDict['t4character_2'] = act.t4character_2
             request.session["currentACT"] = infoDict
-            return redirect('ranks:data2')
+            #return redirect('ranks:data2')
     return render(request, 'ranks/teamData.html', {'actform':form})
 
-def enterData(request):
-    return render(request, "ranks/raceData.html")
+#def enterData(request):
+#    return render(request, "ranks/raceData.html", {'raceform':racesForm})

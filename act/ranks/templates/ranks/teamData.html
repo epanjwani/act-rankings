@@ -12,11 +12,17 @@
     {% endif %}
     {% csrf_token %}
     <br>
+    <table>
+    {% load crispy_forms_tags %}
     <form method="get">
-      {{actform}}
+      {{actform|crispy}}
       <input type="submit" value="Submit">
     </form>
+  </table>
     <br> 
     <br>
+  <style>
+    ul.errorlist {display:none;}
+  </style>
   </body>
 </html>
