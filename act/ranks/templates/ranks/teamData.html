@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title>Index</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   </head>
   <body>
-    <p>Create ACT Teams</p>
+    <p class="datitle">Create ACT Teams</p>
     <hr>
     {% if error%}
         <p> {{error}} </p>
@@ -14,15 +15,31 @@
     <br>
     <table>
     {% load crispy_forms_tags %}
+    {% crispy actform %}
+    <!--
     <form method="get">
-      {{actform|crispy}}
       <input type="submit" value="Submit">
-    </form>
+    </form> -->
   </table>
     <br> 
     <br>
   <style>
-    ul.errorlist {display:none;}
+    .datitle{
+      margin-left: 10px;
+      font-weight: bold;
+    }
+    .blockLabel {
+      font-weight: bold;
+      margin-left: 10px;
+    }
+    .ctrlHolder {
+    display:inline;
+    margin-left: 50px;
+  }
+    .ctrlHolder:after {
+    content:"\a";
+    white-space: pre;
+}
   </style>
   </body>
 </html>
