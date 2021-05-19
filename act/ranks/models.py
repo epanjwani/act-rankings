@@ -86,7 +86,7 @@ class PlayerEntry(models.Model):
         ("Josh Josef", "JJ"),
         ("Nico Simon", "NS"),
         ("Sam Schoepke", "SS"),
-        ("James Berthoud", "JBe"),
+        ("James Berthoud", "TJ"),
         ("Jonathan Nurko", "JN"),
         ("Spencer Gladstone", "SG"),
         ("Kion Noori", "KN"),

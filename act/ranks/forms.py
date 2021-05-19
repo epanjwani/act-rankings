@@ -1,7 +1,7 @@
 from django import forms
 from .models import Player, ACT, Team, Race
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, MultiField, ButtonHolder, Submit
+from crispy_forms.layout import Layout, Fieldset, MultiField, ButtonHolder, Submit, Field
 
 class actForm(forms.ModelForm):
     class Meta:
@@ -177,6 +177,7 @@ class actForm(forms.ModelForm):
 
         
         self.helper.layout = Layout(
+            Field('name'),
             MultiField("Team 1",
                 't1player1',
                 't1player2',
