@@ -39,7 +39,10 @@ class Player(models.Model):
         ("Connor Caz", "CC"),
         ("Caleb Hughes", "CH"),
         ("Lukas Steinbock", "LS"),
-        ("Brian Volk", "BV")
+        ("Brian Volk", "BV"),
+        ("Nitan Shalon", "NSh"),
+        ("Mat Zlotnick", "MZ"),
+        ("Gavin Morse" , "GM"),
     )
     name = models.CharField(max_length=50, choices=PLAYER_CHOICES)
     elo = models.IntegerField(null=True)

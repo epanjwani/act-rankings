@@ -75,6 +75,7 @@ def enterTeamData(request):
 
         player_dict = {
             "EP" : "Eashan Panjwani",
+            "AS" : "Andrew Schanny",
             "ZB" : "Zach Bell",
             "BM" : "Benner Mullin",
             "JB" : "Jackson Brodwolf",
