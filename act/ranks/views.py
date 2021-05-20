@@ -112,6 +112,7 @@ def enterTeamData(request):
             "BV" : "Brian Volk",
             "NSh" : "Nitan Shalon",
             "MZ" : "Mat Zlotnick",
+            "GM" : "Gavin Morse",
         }
 
         for row in worksheet.iter_rows():
