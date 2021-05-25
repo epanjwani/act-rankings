@@ -47,12 +47,16 @@ class Player(models.Model):
     name = models.CharField(max_length=50, choices=PLAYER_CHOICES)
     elo = models.IntegerField(null=True)
     elo_change = models.IntegerField(default=0)
+    elo_change1 = models.IntegerField(default=0)
+    elo_change2 = models.IntegerField(default=0)
+    elo_change3 = models.IntegerField(default=0)
+    elo_change4 = models.IntegerField(default=0)
+    elo_change5 = models.IntegerField(default=0)
     acts_ran = models.IntegerField(default=0)
     total_points = models.IntegerField(default=0)
     accum_competitor_elo = models.IntegerField(default=0)
     LEAGUE_CHOICES = (
         ("A-League", "A-League"),
-        ("B-League", "B-League"),
         ("C-League", "C-League"),
         ("N/A", "N/A"),
     )
@@ -60,6 +64,7 @@ class Player(models.Model):
     def __str__(self):
         return self.name
 
+"""
 class PlayerEntry(models.Model):
     PLAYER_CHOICES = (
         ("Eashan Panjwani", "EP"),
@@ -106,6 +111,7 @@ class PlayerEntry(models.Model):
     points = models.IntegerField()
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
 
+
 class Race(models.Model):
     RACE_CHOICES = (
         ("Luigi Circuit", "Luigi Circuit"),
@@ -137,6 +143,7 @@ class Race(models.Model):
     def __str__(self):
         return self.name
 
+
 class Team(models.Model):
     player1 = models.ForeignKey(Player, on_delete=models.CASCADE, related_name="p1")
     player2 = models.ForeignKey(Player, on_delete=models.CASCADE, related_name="p2")
@@ -153,7 +160,7 @@ class Team(models.Model):
     )
     character_1 = models.CharField(max_length=50, choices=CHARACTER_CHOICES)
     character_2 = models.CharField(max_length=50, choices=CHARACTER_CHOICES)
-    avg_elo = models.IntegerField()
+    avg_elo = models.IntegerField() 
 
 class ACT(models.Model):
     CHARACTER_CHOICES = (
@@ -365,7 +372,7 @@ class ACT(models.Model):
     def __str__(self):
         return self.name
 
-
+    """
 
 
 

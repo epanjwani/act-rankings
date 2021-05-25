@@ -8,37 +8,76 @@
   <body>
     {%if dict%}
         <table>
-          <tr>
-            <th>Position</th>
-            <th>Name</th>
-            <th>League</th>
-            <th>Elo Rating</th>
-            <th>Change in Elo (from last ACT)</th>
-            <th>Avg. Competitor Elo</th>
-            <th>ACTs Ran</th>
-            <th>Avg. Points</th>
-          <tr>
+          <tr class="tableheader">
+            <th class="heading">Position</th>
+            <th class="heading">Name</th>
+            <th class="heading">League</th>
+            <th class="heading">Elo Rating</th>
+            <th class="heading">Change in Elo (from last 5 ACTs)</th>
+            <th class="heading">Average Competitor Elo</th>
+            <th class="heading">ACTs Ran</th>
+            <th class="heading">Avg. Points</th>
+          </tr>
       {%for name, player in dict.items%}
-          <tr>
-            <th>{{forloop.counter}}</th>
-            <th>{{name}}</th>
-            <th>{{player.league}}</th>
-            <th>{{player.elo}}</th>
-            <th>{{player.elo_change}}</th>
-            {%if player.acts_ran != 0%}
-            <th>{{player.accum_competitor_elo|div:player.acts_ran}}</th>
-            {%else%}
-            <th>N/A</th>
-            {%endif%}
-            <th>{{player.acts_ran}}</th>
-            {%if player.acts_ran != 0%}
-            <th>{{player.total_points|div:player.acts_ran}}</th>
-            {%else%}
-            <th>N/A</th>
-            {%endif%}
-          <tr>
-          {%endfor%}
+            <tr>
+              <th>{{forloop.counter}}</th>
+              <th>{{name}}</th>
+              {%if player.league == "A-League"%}
+                <th><font color="cyan">{{player.league}}</font></th>
+              {%elif player.league == "C-League"%}
+                <th><font color="yellow">{{player.league}}</font></th>
+              {%else%}
+                <th><font color="lightgreen">{{player.league}}</font></th>
+              {%endif%}
+              <th>{{player.elo}}</th>
+              {%if player.elo_change > 0%}
+                <th><font color="lightgreen">{{player.elo_change}}</font></th>
+              {%elif player.elo_change < 0 %}
+                <th><font color="pink">{{player.elo_change}}</font></th>
+              {%else%}
+                <th>{{player.elo_change}}</th>
+              {%endif%}
+              {%if player.acts_ran != 0%}
+                <th>{{player.accum_competitor_elo|div:player.acts_ran|floatformat:0}}</th>
+              {%else%}
+                <th>N/A</th>
+              {%endif%}
+              <th>{{player.acts_ran}}</th>
+              {%if player.acts_ran != 0%}
+              <th>{{player.total_points|div:player.acts_ran|floatformat:2}}</th>
+              {%else%}
+              <th>N/A</th>
+              {%endif%}
+            </tr>
+        {%endfor%}
         </table>
       {%endif%}
   </body>
+  <style>
+
+    table, th {
+      border-collapse: collapse;
+    }
+    table{
+      width: 100%;
+      color: white;
+    }
+    .heading{
+      font-size: 25px;
+      text-align: center;
+      font-weight: bold;
+    }
+    body {
+      background-color: rgb(41, 41, 41);
+    }
+    tr{
+      line-height: 30px;
+    }
+    tr:nth-child(even) {
+      background-color: rgb(71, 71, 71)
+    }
+    tr:nth-child(odd) {
+      background-color: rgb(100, 100, 100)
+    }
+  </style>
 </html>
