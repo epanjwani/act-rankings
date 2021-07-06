@@ -55,6 +55,7 @@ class Player(models.Model):
     acts_ran = models.IntegerField(default=0)
     total_points = models.IntegerField(default=0)
     accum_competitor_elo = models.IntegerField(default=0)
+    #accum_teammate_elo = models.IntegerField(default=0)
     LEAGUE_CHOICES = (
         ("A-League", "A-League"),
         ("C-League", "C-League"),
