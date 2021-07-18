@@ -275,6 +275,21 @@ def enterTeamData(request):
         t4p1 = Player.objects.get(name=team4player1name)
         t4p2 = Player.objects.get(name=team4player2name)
 
+#UPDATE ACT MODEL
+    #UPDATE PLAYERS
+
+        act_object.t1player1 = t1p1
+        act_object.t1player2 = t1p2
+        act_object.t2player1 = t2p1
+        act_object.t2player2 = t2p2
+        act_object.t3player1 = t3p1
+        act_object.t3player2 = t3p2
+        act_object.t4player1 = t4p1
+        act_object.t4player2 = t4p2
+    #UPDATE CHARACTERS
+        
+    ###############WE NEED TO FINISH UPDATING ACT OBJECT. THINK ABOUT HOW TO ACCOUNT FOR BLANK CHARACTER FIELDS IN EXCEL
+
 #CALCULATE TEAM, COMPETITOR ELOS
         t1_elo = (t1p1.elo + t1p2.elo)/2
         t2_elo = (t2p1.elo + t2p2.elo)/2

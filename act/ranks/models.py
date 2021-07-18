@@ -76,13 +76,14 @@ class ACT(models.Model):
     t4player1 = models.ForeignKey(Player)
     t4player2 = models.ForeignKey(Player)
     CHARACTER_CHOICES = (
-        ("Baby", "Baby"),
-        ("Toad", "Toad"),
-        ("Koopa", "Koopa"),
-        ("Bowser Jr.", "Bowser Jr."),
-        ("Diddy Kong", "Diddy Kong"),
+        ("B", "B"),
+        ("T", "T"),
+        ("K", "K"),
+        ("BJ", "BJ"),
+        ("DK", "DK"),
         ("Medium character", "Medium character"),
-        ("Big character", "Big character")
+        ("Big character", "Big character"),
+        ("Other", "Other")
     )
     t1character1 = models.CharField(max_length=50, choices=CHARACTER_CHOICES, null=True)
     t1character2 = models.CharField(max_length=50, choices=CHARACTER_CHOICES, null=True)
