@@ -4,7 +4,6 @@ import openpyxl
 
 # Create your views here.
 
-#OVERALL STAT SETUP
 def home(request):
     #players = ["Eashan Panjwani","Zach Bell","Benner Mullin","Jackson Brodwolf","Matt Halper","Alex Hazel","Harris Klein","Kohl Terry","Alex Mellas","Noah Paige","Julian Ricci","Robbie Kramer","Ethan Roberts","Henry Rogers","Ryan Simon","Peter Netchvolodoff","Andrew Schanuel","Avery Friedman","Josh Greenfield","Will Spartin","Will Goldberg","Brady Sheaffer","Aman Patil","Zach Stern","Josh Josef","Nico Simon", "Sam Schoepke", "James Berthoud","Jonathan Nurko", "Spencer Gladstone","Kion Noori", "Max Marchetto", "Chuck Leonetti", "Matt Flower", "Connor Caz", "Caleb Hughes", "Lukas Steinbock","Brian Volk"]
     player_dict = {}
@@ -51,7 +50,7 @@ def player(request):
     return render(request, "ranks/player.html")
 
 """
-#INDIVIDUAL ACT STAT SETUP
+
 def enterTeamData(request):
     if "GET" == request.method:
         return render(request, 'ranks/teamData.html', {})
@@ -126,8 +125,7 @@ def enterTeamData(request):
             "MZ" : "Mat Zlotnick",
             "GM" : "Gavin Morse"
         }
-        
-#READING EXCEL SHEET TO GET PLAYER POINTS
+
         for row in worksheet.iter_rows():
             if rowCount > 32:
                 break
@@ -232,7 +230,7 @@ def enterTeamData(request):
 
         infoDict["teaminfo"] = teamDict
         """
-#CONNECT PLAYER SCORES TO THE RESPECTIVE PLAYER MODEL
+
         t1p1 = Player.objects.get(name=team1player1name)
         t1p2 = Player.objects.get(name=team1player2name)
         t2p1 = Player.objects.get(name=team2player1name)
@@ -242,52 +240,25 @@ def enterTeamData(request):
         t4p1 = Player.objects.get(name=team4player1name)
         t4p2 = Player.objects.get(name=team4player2name)
 
-#CALCULATE TEAM, COMPETITOR ELOS
         t1_elo = (t1p1.elo + t1p2.elo)/2
         t2_elo = (t2p1.elo + t2p2.elo)/2
         t3_elo = (t3p1.elo + t3p2.elo)/2
         t4_elo = (t4p1.elo + t4p2.elo)/2
-        t1Comp = (t2_elo + t3_elo + t4_elo)/3
-        t2Comp = (t1_elo + t3_elo + t4_elo)/3
-        t3Comp = (t1_elo + t2_elo + t4_elo)/3
-        t4Comp = (t1_elo + t2_elo + t3_elo)/3
+        t1Comp = (t2_elo + t3_elo + t4_elo)/3 # change
+        t2Comp = (t1_elo + t3_elo + t4_elo)/3 # change
+        t3Comp = (t1_elo + t2_elo + t4_elo)/3 # change
+        t4Comp = (t1_elo + t2_elo + t3_elo)/3 # change
 
-#TEAM POINTS
         t1_points = team1player1 + team1player2
         t2_points = team2player1 + team2player2
         t3_points = team3player1 + team3player2
-        t4_points = team4player1 + team4player2
+        t4_points = team4player1 + team4player2 # changed massive error
 
-#ELOCHANGE SETUP
         t1_elochange = 0
         t2_elochange = 0
         t3_elochange = 0
         t4_elochange = 0
-        
-#CHANGES IN TEAMMATE ELO, COMPETITOR ELO
-        """
-        Competitor elo is changed lower down right now, but teammate elo has to be updated before the results affect elo, so we should move both stats up here for clarity
-        
-        t1p1.accum_competitor_elo += t1Comp
-        t1p2.accum_competitor_elo += t1Comp
-        t2p1.accum_competitor_elo += t2Comp
-        t2p2.accum_competitor_elo += t2Comp
-        t3p1.accum_competitor_elo += t3Comp
-        t3p2.accum_competitor_elo += t3Comp
-        t4p1.accum_competitor_elo += t4Comp
-        t4p2.accum_competitor_elo += t4Comp
-        
-        t1p1.accum_teammate_elo += t1p2.elo
-        t1p2.accum_teammate_elo += t1p1.elo
-        t2p1.accum_teammate_elo += t2p2.elo
-        t2p2.accum_teammate_elo += t2p1.elo
-        t3p1.accum_teammate_elo += t3p2.elo
-        t3p2.accum_teammate_elo += t3p1.elo
-        t4p1.accum_teammate_elo += t4p2.elo
-        t4p2.accum_teammate_elo += t4p1.elo
-        """
-        
-#CALCULATING TEAM ELO CHANGES
+
         if(t1_points != t2_points):
             point_diff = abs(t1_points-t2_points)
             result = 1
@@ -366,10 +337,9 @@ def enterTeamData(request):
             t3_elochange += change
             t4_elochange -= change
 
-        
-#T1P1 elo, total act, total points, last 5 act updates
+
         t1p1.elo += t1_elochange
-  
+        #lots of changes here
         t1p1.elo_change5 = t1p1.elo_change4
         t1p1.elo_change4 = t1p1.elo_change3
         t1p1.elo_change3 = t1p1.elo_change2
@@ -379,12 +349,13 @@ def enterTeamData(request):
         
         t1p1.acts_ran += 1
         t1p1.total_points += team1player1
-        t1p1.accum_competitor_elo += t1Comp
+        t1p1.accum_competitor_elo += t1Comp # change
+
         t1p1.save()
 
-#T1P2 elo, total act, total points, last 5 act updates
-        t1p2.elo += t1_elochange
 
+        t1p2.elo += t1_elochange
+        #lots of changes here
         t1p2.elo_change5 = t1p2.elo_change4
         t1p2.elo_change4 = t1p2.elo_change3
         t1p2.elo_change3 = t1p2.elo_change2
@@ -394,13 +365,13 @@ def enterTeamData(request):
 
         t1p2.acts_ran += 1
         t1p2.total_points += team1player2
-        t1p2.accum_competitor_elo += t1Comp
+        t1p2.accum_competitor_elo += t1Comp # change
 
         t1p2.save()
 
-#T2P1 elo, total act, total points, last 5 act updates        
+
         t2p1.elo += t2_elochange
-       
+        #lots of changes here
         t2p1.elo_change5 = t2p1.elo_change4
         t2p1.elo_change4 = t2p1.elo_change3
         t2p1.elo_change3 = t2p1.elo_change2
@@ -410,13 +381,13 @@ def enterTeamData(request):
     
         t2p1.acts_ran += 1
         t2p1.total_points += team2player1
-        t2p1.accum_competitor_elo += t2Comp
+        t2p1.accum_competitor_elo += t2Comp # change
 
         t2p1.save()
 
-#T2P2 elo, total act, total points, last 5 act updates
+
         t2p2.elo += t2_elochange
-        
+        #lots of changes here
         t2p2.elo_change5 = t2p2.elo_change4
         t2p2.elo_change4 = t2p2.elo_change3
         t2p2.elo_change3 = t2p2.elo_change2
@@ -426,13 +397,13 @@ def enterTeamData(request):
 
         t2p2.acts_ran += 1
         t2p2.total_points += team2player2
-        t2p2.accum_competitor_elo += t2Comp
+        t2p2.accum_competitor_elo += t2Comp # change
 
         t2p2.save()
 
-#T3P1 elo, total act, total points, last 5 act updates
-        t3p1.elo += t3_elochange
 
+        t3p1.elo += t3_elochange
+        #lots of changes here
         t3p1.elo_change5 = t3p1.elo_change4
         t3p1.elo_change4 = t3p1.elo_change3
         t3p1.elo_change3 = t3p1.elo_change2
@@ -442,13 +413,13 @@ def enterTeamData(request):
         
         t3p1.acts_ran += 1
         t3p1.total_points += team3player1
-        t3p1.accum_competitor_elo += t3Comp
+        t3p1.accum_competitor_elo += t3Comp # change
 
         t3p1.save()
 
-#T3P2 elo, total act, total points, last 5 act updates
-        t3p2.elo += t3_elochange
 
+        t3p2.elo += t3_elochange
+        #lots of changes here
         t3p2.elo_change5 = t3p2.elo_change4
         t3p2.elo_change4 = t3p2.elo_change3
         t3p2.elo_change3 = t3p2.elo_change2
@@ -458,13 +429,13 @@ def enterTeamData(request):
         
         t3p2.acts_ran += 1
         t3p2.total_points += team3player2
-        t3p2.accum_competitor_elo += t3Comp
+        t3p2.accum_competitor_elo += t3Comp # change
 
         t3p2.save()
 
-#T4P1 elo, total act, total points, last 5 act updates
-        t4p1.elo += t4_elochange
 
+        t4p1.elo += t4_elochange
+        #lots of changes here
         t4p1.elo_change5 = t4p1.elo_change4
         t4p1.elo_change4 = t4p1.elo_change3
         t4p1.elo_change3 = t4p1.elo_change2
@@ -474,13 +445,13 @@ def enterTeamData(request):
         
         t4p1.acts_ran += 1
         t4p1.total_points += team4player1
-        t4p1.accum_competitor_elo += t4Comp
+        t4p1.accum_competitor_elo += t4Comp # change
 
         t4p1.save()
 
-#T4P2 elo, total act, total points, last 5 act updates
-        t4p2.elo += t4_elochange
 
+        t4p2.elo += t4_elochange
+        #lots of changes here
         t4p2.elo_change5 = t4p2.elo_change4
         t4p2.elo_change4 = t4p2.elo_change3
         t4p2.elo_change3 = t4p2.elo_change2
@@ -490,7 +461,7 @@ def enterTeamData(request):
         
         t4p2.acts_ran += 1
         t4p2.total_points += team4player2
-        t4p2.accum_competitor_elo += t4Comp
+        t4p2.accum_competitor_elo += t4Comp # change
 
         t4p2.save()
 
