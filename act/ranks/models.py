@@ -66,15 +66,15 @@ class Player(models.Model):
         return self.name
 
 class ACT(models.Model):
-    act_id = models.AutoField(primary_key=True)
-    t1player1 = models.ForeignKey(Player)
-    t1player2 = models.ForeignKey(Player)
-    t2player1 = models.ForeignKey(Player)
-    t2player2 = models.ForeignKey(Player)
-    t3player1 = models.ForeignKey(Player)
-    t3player2 = models.ForeignKey(Player)
-    t4player1 = models.ForeignKey(Player)
-    t4player2 = models.ForeignKey(Player)
+    act_id = models.AutoField(primary_key=True, default=0)
+    t1player1 = models.CharField(max_length=50)
+    t1player2 = models.CharField(max_length=50)
+    t2player1 = models.CharField(max_length=50)
+    t2player2 = models.CharField(max_length=50)
+    t3player1 = models.CharField(max_length=50)
+    t3player2 = models.CharField(max_length=50)
+    t4player1 = models.CharField(max_length=50)
+    t4player2 = models.CharField(max_length=50)
     CHARACTER_CHOICES = (
         ("B", "B"),
         ("T", "T"),
@@ -99,7 +99,7 @@ class ACT(models.Model):
     t2player2_scores = models.CharField(max_length=75, null=True)
     t3player1_scores = models.CharField(max_length=75, null=True)
     t3player2_scores = models.CharField(max_length=75, null=True)
-    t1player1_scores = models.CharField(max_length=75, null=True)
+    t4player1_scores = models.CharField(max_length=75, null=True)
     t4player2_scores = models.CharField(max_length=75, null=True)
     t1player1_elo_before = models.IntegerField(default=0)
     t1player2_elo_before = models.IntegerField(default=0)
@@ -117,12 +117,37 @@ class ACT(models.Model):
     t3player2_elo_after = models.IntegerField(default=0)
     t4player1_elo_after = models.IntegerField(default=0)
     t4player2_elo_after = models.IntegerField(default=0)
+    t1player1_sc = models.IntegerField(default=0)
+    t1player2_sc = models.IntegerField(default=0)
+    t2player1_sc = models.IntegerField(default=0)
+    t2player2_sc = models.IntegerField(default=0)
+    t3player1_sc = models.IntegerField(default=0)
+    t3player2_sc = models.IntegerField(default=0)
+    t4player1_sc = models.IntegerField(default=0)
+    t4player2_sc = models.IntegerField(default=0)
     LEAGUE_CHOICES = (
         ("A-League", "A-League"),
         ("C-League", "C-League"),
         ("N/A", "N/A"),
     )
     league = models.CharField(max_length=50, choices=LEAGUE_CHOICES, null=True)
+
+class GlobalVariables(models.Model):
+    score_sd = models.FloatField(default=0)
+    toad_bowser = models.FloatField(default=0)
+    toad_diddy = models.FloatField(default=0)
+    toad_koopa = models.FloatField(default=0)
+    toad_baby = models.FloatField(default=0)
+    bowser_diddy = models.FloatField(default=0)
+    bowser_koopa = models.FloatField(default=0)
+    bowser_baby = models.FloatField(default=0)
+    diddy_koopa = models.FloatField(default=0)
+    diddy_baby = models.FloatField(default=0)
+    koopa_baby = models.FloatField(default=0)
+    koopa_koopa = models.FloatField(default=0)
+    baby_baby = models.FloatField(default=0)
+    others = models.FloatField(default=0)
+
 
 """
 

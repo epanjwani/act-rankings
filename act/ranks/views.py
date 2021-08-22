@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Player, ACT
+from .models import Player, ACT, GlobalVariables
 import openpyxl
 
 # Create your views here.
@@ -287,18 +287,192 @@ def enterTeamData(request):
         act_object.t4player1 = t4p1
         act_object.t4player2 = t4p2
     #UPDATE CHARACTERS
-        
+        act_object.t1character1 = team1character1name
+        act_object.t1character2 = team1character2name
+        act_object.t2character1 = team2character1name
+        act_object.t2character2 = team2character2name
+        act_object.t3character1 = team3character1name
+        act_object.t3character2 = team3character2name
+        act_object.t4character1 = team4character1name
+        act_object.t4character2 = team4character2name
+    #UPDATE SC
+        act_object.t1player1_sc = team1player1
+        act_object.t1player2_sc = team1player2
+        act_object.t2player1_sc = team2player1
+        act_object.t2player2_sc = team2player2
+        act_object.t3player1_sc = team3player1
+        act_object.t3player2_sc = team3player2
+        act_object.t4player1_sc = team4player1
+        act_object.t4player2_sc = team4player2
+    #UPDATE SCORES
+        act_object.t1player1_scores = t1player1_score
+        act_object.t1player2_scores = t1player2_score
+        act_object.t2player1_scores = t2player1_score
+        act_object.t2player2_scores = t2player2_score
+        act_object.t3player1_scores = t3player1_score
+        act_object.t3player2_scores = t3player2_score
+        act_object.t4player1_scores = t4player1_score
+        act_object.t4player2_scores = t4player2_score
     ###############WE NEED TO FINISH UPDATING ACT OBJECT. THINK ABOUT HOW TO ACCOUNT FOR BLANK CHARACTER FIELDS IN EXCEL
 
+#ADJ ELO
+
+        team1zscore = 0
+        team2zscore = 0
+        team3zscore = 0
+        team4zscore = 0
+
+        if (team1character1name == "T" and team1character2name == "BJ"):
+            team1zscore = GlobalVariables.toad_bowser
+        elif (team1character1name == "T" and team1character2name == "DK"):
+            team1zscore = GlobalVariables.toad_diddy
+        elif (team1character1name == "T" and team1character2name == "K"):
+            team1zscore = GlobalVariables.toad_koopa
+        elif (team1character1name == "T" and team1character2name == "B"):
+            team1zscore = GlobalVariables.toad_baby
+        elif (team1character1name == "BJ" and team1character2name == "DK"):
+            team1zscore = GlobalVariables.bowser_diddy
+        elif (team1character1name == "BJ" and team1character2name == "K"):
+            team1zscore = GlobalVariables.bowser_koopa
+        elif (team1character1name == "BJ" and team1character2name == "B"):
+            team1zscore = GlobalVariables.bowser_baby
+        elif (team1character1name == "DK" and team1character2name == "K"):
+            team1zscore = GlobalVariables.diddy_koopa
+        elif (team1character1name == "DK" and team1character2name == "B"):
+            team1zscore = GlobalVariables.diddy_baby
+        elif (team1character1name == "K" and team1character2name == "B"):
+            team1zscore = GlobalVariables.koopa_baby
+        elif (team1character1name == "K" and team1character2name == "K"):
+            team1zscore = GlobalVariables.koopa_koopa
+        elif (team1character1name == "B" and team1character2name == "B"):
+            team1zscore = GlobalVariables.baby_baby
+
+        if (team2character1name == "T" and team2character2name == "BJ"):
+            team2zscore = GlobalVariables.toad_bowser
+        elif (team2character1name == "T" and team2character2name == "DK"):
+            team2zscore = GlobalVariables.toad_diddy
+        elif (team2character1name == "T" and team2character2name == "K"):
+            team2zscore = GlobalVariables.toad_koopa
+        elif (team2character1name == "T" and team2character2name == "B"):
+            team2zscore = GlobalVariables.toad_baby
+        elif (team2character1name == "BJ" and team2character2name == "DK"):
+            team2zscore = GlobalVariables.bowser_diddy
+        elif (team2character1name == "BJ" and team2character2name == "K"):
+            team2zscore = GlobalVariables.bowser_koopa
+        elif (team2character1name == "BJ" and team2character2name == "B"):
+            team2zscore = GlobalVariables.bowser_baby
+        elif (team2character1name == "DK" and team2character2name == "K"):
+            team2zscore = GlobalVariables.diddy_koopa
+        elif (team2character1name == "DK" and team2character2name == "B"):
+            team2zscore = GlobalVariables.diddy_baby
+        elif (team2character1name == "K" and team2character2name == "B"):
+            team2zscore = GlobalVariables.koopa_baby
+        elif (team2character1name == "K" and team2character2name == "K"):
+            team2zscore = GlobalVariables.koopa_koopa
+        elif (team2character1name == "B" and team2character2name == "B"):
+            team2zscore = GlobalVariables.baby_baby
+
+        if (team3character1name == "T" and team3character2name == "BJ"):
+            team3zscore = GlobalVariables.toad_bowser
+        elif (team3character1name == "T" and team3character2name == "DK"):
+            team3zscore = GlobalVariables.toad_diddy
+        elif (team3character1name == "T" and team3character2name == "K"):
+            team3zscore = GlobalVariables.toad_koopa
+        elif (team3character1name == "T" and team3character2name == "B"):
+            team3zscore = GlobalVariables.toad_baby
+        elif (team3character1name == "BJ" and team3character2name == "DK"):
+            team3zscore = GlobalVariables.bowser_diddy
+        elif (team3character1name == "BJ" and team3character2name == "K"):
+            team3zscore = GlobalVariables.bowser_koopa
+        elif (team3character1name == "BJ" and team3character2name == "B"):
+            team3zscore = GlobalVariables.bowser_baby
+        elif (team3character1name == "DK" and team3character2name == "K"):
+            team3zscore = GlobalVariables.diddy_koopa
+        elif (team3character1name == "DK" and team3character2name == "B"):
+            team3zscore = GlobalVariables.diddy_baby
+        elif (team3character1name == "K" and team3character2name == "B"):
+            team3zscore = GlobalVariables.koopa_baby
+        elif (team3character1name == "K" and team3character2name == "K"):
+            team3zscore = GlobalVariables.koopa_koopa
+        elif (team3character1name == "B" and team3character2name == "B"):
+            team3zscore = GlobalVariables.baby_baby
+
+        if (team4character1name == "T" and team4character2name == "BJ"):
+            team4zscore = GlobalVariables.toad_bowser
+        elif (team4character1name == "T" and team4character2name == "DK"):
+            team4zscore = GlobalVariables.toad_diddy
+        elif (team4character1name == "T" and team4character2name == "K"):
+            team4zscore = GlobalVariables.toad_koopa
+        elif (team4character1name == "T" and team4character2name == "B"):
+            team4zscore = GlobalVariables.toad_baby
+        elif (team4character1name == "BJ" and team4character2name == "DK"):
+            team4zscore = GlobalVariables.bowser_diddy
+        elif (team4character1name == "BJ" and team4character2name == "K"):
+            team4zscore = GlobalVariables.bowser_koopa
+        elif (team4character1name == "BJ" and team4character2name == "B"):
+            team4zscore = GlobalVariables.bowser_baby
+        elif (team4character1name == "DK" and team4character2name == "K"):
+            team4zscore = GlobalVariables.diddy_koopa
+        elif (team4character1name == "DK" and team4character2name == "B"):
+            team4zscore = GlobalVariables.diddy_baby
+        elif (team4character1name == "K" and team4character2name == "B"):
+            team4zscore = GlobalVariables.koopa_baby
+        elif (team4character1name == "K" and team4character2name == "K"):
+            team4zscore = GlobalVariables.koopa_koopa
+        elif (team4character1name == "B" and team4character2name == "B"):
+            team4zscore = GlobalVariables.baby_baby
+
+        
+
+        #Calculated elo distribution sd
+        elo_distribution_sd = 118.2991
+        t1p1_adj_elo = t1p1.elo + elo_distribution_sd*team1zscore
+        t1p2_adj_elo = t1p2.elo + elo_distribution_sd*team1zscore
+        t2p1_adj_elo = t2p1.elo + elo_distribution_sd*team2zscore
+        t2p2_adj_elo = t2p2.elo + elo_distribution_sd*team2zscore
+        t3p1_adj_elo = t3p1.elo + elo_distribution_sd*team3zscore
+        t3p2_adj_elo = t3p2.elo + elo_distribution_sd*team3zscore
+        t4p1_adj_elo = t4p1.elo + elo_distribution_sd*team4zscore
+        t4p2_adj_elo = t4p2.elo + elo_distribution_sd*team4zscore
+
 #CALCULATE TEAM, COMPETITOR ELOS
-        t1_elo = (t1p1.elo + t1p2.elo)/2
-        t2_elo = (t2p1.elo + t2p2.elo)/2
-        t3_elo = (t3p1.elo + t3p2.elo)/2
-        t4_elo = (t4p1.elo + t4p2.elo)/2
+        t1_elo = (t1p1_adj_elo + t1p2_adj_elo)/2
+        t2_elo = (t2p1_adj_elo + t2p2_adj_elo)/2
+        t3_elo = (t3p1_adj_elo + t3p2_adj_elo)/2
+        t4_elo = (t4p1_adj_elo + t4p2_adj_elo)/2
         t1Comp = (t2_elo + t3_elo + t4_elo)/3
         t2Comp = (t1_elo + t3_elo + t4_elo)/3
         t3Comp = (t1_elo + t2_elo + t4_elo)/3
         t4Comp = (t1_elo + t2_elo + t3_elo)/3
+
+#EXPECTED POINTS
+        t1p1_exp_pts_z = (t1p1_adj_elo - t1Comp)/elo_distribution_sd
+        t1p2_exp_pts_z = (t1p2_adj_elo - t1Comp)/elo_distribution_sd
+        t2p1_exp_pts_z = (t2p1_adj_elo - t2Comp)/elo_distribution_sd
+        t2p2_exp_pts_z = (t2p2_adj_elo - t2Comp)/elo_distribution_sd
+        t3p1_exp_pts_z = (t3p1_adj_elo - t3Comp)/elo_distribution_sd
+        t3p2_exp_pts_z = (t3p2_adj_elo - t3Comp)/elo_distribution_sd
+        t4p1_exp_pts_z = (t4p1_adj_elo - t4Comp)/elo_distribution_sd
+        t4p2_exp_pts_z = (t4p2_adj_elo - t4Comp)/elo_distribution_sd
+
+        t1p1_exp_pts_raw = t1p1_exp_pts_z*GlobalVariables.score_sd + 12
+        t1p2_exp_pts_raw = t1p2_exp_pts_z*GlobalVariables.score_sd + 12
+        t2p1_exp_pts_raw = t2p1_exp_pts_z*GlobalVariables.score_sd + 12
+        t2p2_exp_pts_raw = t2p2_exp_pts_z*GlobalVariables.score_sd + 12
+        t3p1_exp_pts_raw = t3p1_exp_pts_z*GlobalVariables.score_sd + 12
+        t3p2_exp_pts_raw = t3p2_exp_pts_z*GlobalVariables.score_sd + 12
+        t4p1_exp_pts_raw = t4p1_exp_pts_z*GlobalVariables.score_sd + 12
+        t4p2_exp_pts_raw = t4p2_exp_pts_z*GlobalVariables.score_sd + 12
+
+        t1p1_exp_pts = t1p1_exp_pts_raw*(48/(36+t1p1_exp_pts_raw))
+        t1p2_exp_pts = t1p2_exp_pts_raw*(48/(36+t1p2_exp_pts_raw))
+        t2p1_exp_pts = t2p1_exp_pts_raw*(48/(36+t2p1_exp_pts_raw))
+        t2p2_exp_pts = t2p2_exp_pts_raw*(48/(36+t2p2_exp_pts_raw))
+        t3p1_exp_pts = t3p1_exp_pts_raw*(48/(36+t3p1_exp_pts_raw))
+        t3p2_exp_pts = t3p2_exp_pts_raw*(48/(36+t3p2_exp_pts_raw))
+        t4p1_exp_pts = t4p1_exp_pts_raw*(48/(36+t4p1_exp_pts_raw))
+        t4p2_exp_pts = t4p2_exp_pts_raw*(48/(36+t4p2_exp_pts_raw))
+
 #TEAM POINTS
         t1_points = team1player1 + team1player2
         t2_points = team2player1 + team2player2
@@ -309,11 +483,19 @@ def enterTeamData(request):
         t2_elochange = 0
         t3_elochange = 0
         t4_elochange = 0
+        t1p1_elochange = 0
+        t1p2_elochange = 0
+        t2p1_elochange = 0
+        t2p2_elochange = 0
+        t3p1_elochange = 0
+        t3p2_elochange = 0
+        t4p1_elochange = 0
+        t4p2_elochange = 0
 
 #CHANGES IN TEAMMATE ELO, COMPETITOR ELO
         """     
         Competitor elo is changed lower down right now, but teammate elo has to be updated before the results affect elo, so we should move both stats up here for clarity
-        
+        ***THIS DATA HAS ADJUSTED ELO FROM CHARACTERS NOW -- DO WE WANT THAT
         t1p1.accum_competitor_elo += t1Comp
         t1p2.accum_competitor_elo += t1Comp
         t2p1.accum_competitor_elo += t2Comp
@@ -332,6 +514,15 @@ def enterTeamData(request):
         t4p1.accum_teammate_elo += t4p2.elo
         t4p2.accum_teammate_elo += t4p1.elo
         """
+#CALCULATING INDIV ELO CHANGES
+        t1p1_elochange += (team1player1 - t1p1_exp_pts)*"MOV formula"*"multiplier value"
+        t1p2_elochange += (team1player2 - t1p2_exp_pts)*"MOV formula"*"multiplier value"
+        t2p1_elochange += (team2player1 - t2p1_exp_pts)*"MOV formula"*"multiplier value"
+        t2p2_elochange += (team2player2 - t2p2_exp_pts)*"MOV formula"*"multiplier value"
+        t3p1_elochange += (team3player1 - t3p1_exp_pts)*"MOV formula"*"multiplier value"
+        t3p2_elochange += (team3player2 - t3p2_exp_pts)*"MOV formula"*"multiplier value"
+        t4p1_elochange += (team4player1 - t4p1_exp_pts)*"MOV formula"*"multiplier value"
+        t4p2_elochange += (team4player2 - t4p2_exp_pts)*"MOV formula"*"multiplier value"
 
 #CALCULATING TEAM ELO CHANGES
         if(t1_points != t2_points):
@@ -413,13 +604,14 @@ def enterTeamData(request):
             t4_elochange -= change
 
 #T1P1 elo, total act, total points, last 5 act updates
-        t1p1.elo += t1_elochange
+        t1p1_elochange = (t1p1_elochange + t1_elochange)/2 #adds team change to indiv change and averages
+        t1p1.elo += t1p1_elochange
 
         t1p1.elo_change5 = t1p1.elo_change4
         t1p1.elo_change4 = t1p1.elo_change3
         t1p1.elo_change3 = t1p1.elo_change2
         t1p1.elo_change2 = t1p1.elo_change1
-        t1p1.elo_change1 = t1_elochange
+        t1p1.elo_change1 = t1p1_elochange
         t1p1.elo_change = t1p1.elo_change1+ t1p1.elo_change2+ t1p1.elo_change3+ t1p1.elo_change4+ t1p1.elo_change5
         
         t1p1.acts_ran += 1
@@ -429,13 +621,14 @@ def enterTeamData(request):
         t1p1.save()
 
 #T1P2 elo, total act, total points, last 5 act updates
-        t1p2.elo += t1_elochange
+        t1p2_elochange = (t1p2_elochange + t1_elochange)/2 #adds team change to indiv change and averages
+        t1p2.elo += t1p2_elochange
         
         t1p2.elo_change5 = t1p2.elo_change4
         t1p2.elo_change4 = t1p2.elo_change3
         t1p2.elo_change3 = t1p2.elo_change2
         t1p2.elo_change2 = t1p2.elo_change1
-        t1p2.elo_change1 = t1_elochange
+        t1p2.elo_change1 = t1p2_elochange
         t1p2.elo_change = t1p2.elo_change1+ t1p2.elo_change2+ t1p2.elo_change3+ t1p2.elo_change4+ t1p2.elo_change5
 
         t1p2.acts_ran += 1
@@ -445,13 +638,14 @@ def enterTeamData(request):
         t1p2.save()
 
 #T2P1 elo, total act, total points, last 5 act updates
-        t2p1.elo += t2_elochange
+        t2p1_elochange = (t2p1_elochange + t2_elochange)/2 #adds team change to indiv change and averages
+        t2p1.elo += t2p1_elochange
         
         t2p1.elo_change5 = t2p1.elo_change4
         t2p1.elo_change4 = t2p1.elo_change3
         t2p1.elo_change3 = t2p1.elo_change2
         t2p1.elo_change2 = t2p1.elo_change1
-        t2p1.elo_change1 = t2_elochange
+        t2p1.elo_change1 = t2p1_elochange
         t2p1.elo_change = t2p1.elo_change1+ t2p1.elo_change2+ t2p1.elo_change3+ t2p1.elo_change4+ t2p1.elo_change5
     
         t2p1.acts_ran += 1
@@ -461,13 +655,14 @@ def enterTeamData(request):
         t2p1.save()
 
 #T2P2 elo, total act, total points, last 5 act updates
-        t2p2.elo += t2_elochange
+        t2p2_elochange = (t2p2_elochange + t2_elochange)/2 #adds team change to indiv change and averages
+        t2p2.elo += t2p2_elochange
         
         t2p2.elo_change5 = t2p2.elo_change4
         t2p2.elo_change4 = t2p2.elo_change3
         t2p2.elo_change3 = t2p2.elo_change2
         t2p2.elo_change2 = t2p2.elo_change1
-        t2p2.elo_change1 = t2_elochange
+        t2p2.elo_change1 = t2p2_elochange
         t2p2.elo_change = t2p2.elo_change1+ t2p2.elo_change2+ t2p2.elo_change3+ t2p2.elo_change4+ t2p2.elo_change5
 
         t2p2.acts_ran += 1
@@ -477,13 +672,14 @@ def enterTeamData(request):
         t2p2.save()
 
 #T3P1 elo, total act, total points, last 5 act updates
-        t3p1.elo += t3_elochange
+        t3p1_elochange = (t3p1_elochange + t3_elochange)/2 #adds team change to indiv change and averages
+        t3p1.elo += t3p1_elochange
         
         t3p1.elo_change5 = t3p1.elo_change4
         t3p1.elo_change4 = t3p1.elo_change3
         t3p1.elo_change3 = t3p1.elo_change2
         t3p1.elo_change2 = t3p1.elo_change1
-        t3p1.elo_change1 = t3_elochange
+        t3p1.elo_change1 = t3p1_elochange
         t3p1.elo_change = t3p1.elo_change1+ t3p1.elo_change2+ t3p1.elo_change3+ t3p1.elo_change4+ t3p1.elo_change5
         
         t3p1.acts_ran += 1
@@ -493,13 +689,14 @@ def enterTeamData(request):
         t3p1.save()
 
 #T3P2 elo, total act, total points, last 5 act updates
-        t3p2.elo += t3_elochange
+        t3p2_elochange = (t3p2_elochange + t3_elochange)/2 #adds team change to indiv change and averages
+        t3p2.elo += t3p2_elochange
         
         t3p2.elo_change5 = t3p2.elo_change4
         t3p2.elo_change4 = t3p2.elo_change3
         t3p2.elo_change3 = t3p2.elo_change2
         t3p2.elo_change2 = t3p2.elo_change1
-        t3p2.elo_change1 = t3_elochange
+        t3p2.elo_change1 = t3p2_elochange
         t3p2.elo_change = t3p2.elo_change1+ t3p2.elo_change2+ t3p2.elo_change3+ t3p2.elo_change4+ t3p2.elo_change5
         
         t3p2.acts_ran += 1
@@ -509,13 +706,14 @@ def enterTeamData(request):
         t3p2.save()
 
 #T4P1 elo, total act, total points, last 5 act updates
-        t4p1.elo += t4_elochange
+        t4p1_elochange = (t4p1_elochange + t4_elochange)/2 #adds team change to indiv change and averages
+        t4p1.elo += t4p1_elochange
 
         t4p1.elo_change5 = t4p1.elo_change4
         t4p1.elo_change4 = t4p1.elo_change3
         t4p1.elo_change3 = t4p1.elo_change2
         t4p1.elo_change2 = t4p1.elo_change1
-        t4p1.elo_change1 = t4_elochange
+        t4p1.elo_change1 = t4p1_elochange
         t4p1.elo_change = t4p1.elo_change1+ t4p1.elo_change2+ t4p1.elo_change3+ t4p1.elo_change4+ t4p1.elo_change5
         
         t4p1.acts_ran += 1
@@ -525,13 +723,14 @@ def enterTeamData(request):
         t4p1.save()
 
 #T4P2 elo, total act, total points, last 5 act updates
-        t4p2.elo += t4_elochange
+        t4p2_elochange = (t4p2_elochange + t4_elochange)/2 #adds team change to indiv change and averages
+        t4p2.elo += t4p2_elochange
         
         t4p2.elo_change5 = t4p2.elo_change4
         t4p2.elo_change4 = t4p2.elo_change3
         t4p2.elo_change3 = t4p2.elo_change2
         t4p2.elo_change2 = t4p2.elo_change1
-        t4p2.elo_change1 = t4_elochange
+        t4p2.elo_change1 = t4p2_elochange
         t4p2.elo_change = t4p2.elo_change1+ t4p2.elo_change2+ t4p2.elo_change3+ t4p2.elo_change4+ t4p2.elo_change5
         
         t4p2.acts_ran += 1
@@ -540,6 +739,8 @@ def enterTeamData(request):
 
         t4p2.save()
         #return redirect('ranks:data2')
+        
+#UPDATE CHARACTER HANDICAPS
 
     return render(request, 'ranks/teamData.html', {})
 
