@@ -324,224 +324,255 @@ def enterTeamData(request):
         team2zscore = 0
         team3zscore = 0
         team4zscore = 0
-
-        character_combo_array = []
-        character_combo_count_array = []
+        t1combo = ""
+        t2combo = ""
+        t3combo = ""
+        t4combo = ""
+        t1combocount = ""
+        t2combocount = ""
+        t3combocount = ""
+        t4combocount = ""
         ###### CHANGE ARRAYS TO MAPS ( and update the stuff below and in new z-score area ) #########
 
-        overall = GlobalVariables.objects.all()
-        print(overall.count())
+        overall = GlobalVariables.objects.first()
 
         print(overall.toad_bowser)
         if (team1character1name == "T" and team1character2name == "BJ"):
             team1zscore = overall.toad_bowser
-            character_combo_array.append(overall.toad_bowser)
-            character_combo_count_array.append(overall.toad_bowser_count)
+            t1combo = 'toad_bowser'
+            t1combocount = 'toad_bowser_count'
         elif (team1character1name == "T" and team1character2name == "DK"):
             team1zscore = overall.toad_diddy
-            character_combo_array.append(overall.toad_diddy)
-            character_combo_count_array.append(overall.toad_diddy_count)
+            t1combo = 'toad_diddy'
+            t1combocount = 'toad_diddy_count'
         elif (team1character1name == "T" and team1character2name == "K"):
             team1zscore = overall.toad_koopa
-            character_combo_array.append(overall.toad_koopa)
-            character_combo_count_array.append(overall.toad_koopa_count)
+            t1combo = 'toad_koopa'
+            t1combocount = 'toad_koopa_count'
         elif (team1character1name == "T" and team1character2name == "B"):
             team1zscore = overall.toad_baby
-            character_combo_array.append(overall.toad_baby)
-            character_combo_count_array.append(overall.toad_baby_count)
+            t1combo = 'toad_baby'
+            t1combocount = 'toad_baby_count'
         elif (team1character1name == "BJ" and team1character2name == "DK"):
             team1zscore = overall.bowser_diddy
-            character_combo_array.append(overall.bowser_diddy)
-            character_combo_count_array.append(overall.bowser_diddy_count)
+            t1combo = 'bowser_diddy'
+            t1combocount = 'bowser_diddy_count'
         elif (team1character1name == "BJ" and team1character2name == "K"):
             team1zscore = overall.bowser_koopa
-            character_combo_array.append(overall.bowser_koopa)
-            character_combo_count_array.append(overall.bowser_koopa_count)
+            t1combo = 'bowser_koopa'
+            t1combocount = 'bowser_koopa_count'
         elif (team1character1name == "BJ" and team1character2name == "B"):
             team1zscore = overall.bowser_baby
-            character_combo_array.append(overall.bowser_baby)
-            character_combo_count_array.append(overall.bowser_baby_count)
+            t1combo = 'bowser_baby'
+            t1combocount = 'bowser_baby_count'
         elif (team1character1name == "DK" and team1character2name == "K"):
             team1zscore = overall.diddy_koopa
-            character_combo_array.append(overall.diddy_koopa)
-            character_combo_count_array.append(overall.diddy_koopa_count)
+            t1combo = 'diddy_koopa'
+            t1combocount = 'diddy_koopa_count'
         elif (team1character1name == "DK" and team1character2name == "B"):
             team1zscore = overall.diddy_baby
-            character_combo_array.append(overall.diddy_baby)
-            character_combo_count_array.append(overall.diddy_baby_count)
+            t1combo = 'diddy_baby'
+            t1combocount = 'diddy_baby_count'
         elif (team1character1name == "K" and team1character2name == "B"):
             team1zscore = overall.koopa_baby
-            character_combo_array.append(overall.koopa_baby)
-            character_combo_count_array.append(overall.koopa_baby_count)
+            t1combo = 'koopa_baby'
+            t1combocount = 'koopa_baby_count'
         elif (team1character1name == "K" and team1character2name == "K"):
             team1zscore = overall.koopa_koopa
-            character_combo_array.append(overall.koopa_koopa)
-            character_combo_count_array.append(overall.koopa_koopa_count)
+            t1combo = 'koopa_koopa'
+            t1combocount = 'koopa_koopa_count'
         elif (team1character1name == "B" and team1character2name == "B"):
             team1zscore = overall.baby_baby
-            character_combo_array.append(overall.baby_baby)
-            character_combo_count_array.append(overall.baby_baby_count)
+            t1combo = 'baby_baby'
+            t1combocount = 'baby_baby_count'
 
         if (team2character1name == "T" and team2character2name == "BJ"):
             team2zscore = overall.toad_bowser
-            character_combo_array.append(overall.toad_bowser)
-            character_combo_count_array.append(overall.toad_bowser_count)
+            t2combo = 'toad_bowser'
+            t2combocount = 'toad_bowser_count'
         elif (team2character1name == "T" and team2character2name == "DK"):
             team2zscore = overall.toad_diddy
-            character_combo_array.append(overall.toad_diddy)
-            character_combo_count_array.append(overall.toad_diddy_count)
+            t2combo = 'toad_diddy'
+            t2combocount = 'toad_diddy_count'
         elif (team2character1name == "T" and team2character2name == "K"):
             team2zscore = overall.toad_koopa
-            character_combo_array.append(overall.toad_koopa)
-            character_combo_count_array.append(overall.toad_koopa_count)
+            t2combo = 'toad_koopa'
+            t2combocount = 'toad_koopa_count'
         elif (team2character1name == "T" and team2character2name == "B"):
             team2zscore = overall.toad_baby
-            character_combo_array.append(overall.toad_baby)
-            character_combo_count_array.append(overall.toad_baby_count)
+            t2combo = 'toad_baby'
+            t2combocount = 'toad_baby_count'
         elif (team2character1name == "BJ" and team2character2name == "DK"):
             team2zscore = overall.bowser_diddy
-            character_combo_array.append(overall.bowser_diddy)
-            character_combo_count_array.append(overall.bowser_diddy_count)
+            t2combo = 'bowser_diddy'
+            t2combocount = 'bowser_diddy_count'
         elif (team2character1name == "BJ" and team2character2name == "K"):
             team2zscore = overall.bowser_koopa
-            character_combo_array.append(overall.bowser_koopa)
-            character_combo_count_array.append(overall.bowser_koopa_count)
+            t2combo = 'bowser_koopa'
+            t2combocount = 'bowser_koopa_count'
         elif (team2character1name == "BJ" and team2character2name == "B"):
             team2zscore = overall.bowser_baby
-            character_combo_array.append(overall.bowser_baby)
-            character_combo_count_array.append(overall.bowser_baby_count)
+            t2combo = 'bowser_baby'
+            t2combocount = 'bowser_baby_count'
         elif (team2character1name == "DK" and team2character2name == "K"):
             team2zscore = overall.diddy_koopa
-            character_combo_array.append(overall.diddy_koopa)
-            character_combo_count_array.append(overall.diddy_koopa_count)
+            t2combo = 'diddy_koopa'
+            t2combocount = 'diddy_koopa_count'
         elif (team2character1name == "DK" and team2character2name == "B"):
             team2zscore = overall.diddy_baby
-            character_combo_array.append(overall.diddy_baby)
-            character_combo_count_array.append(overall.diddy_baby_count)
+            t2combo = 'diddy_baby'
+            t2combocount = 'diddy_baby_count'
         elif (team2character1name == "K" and team2character2name == "B"):
             team2zscore = overall.koopa_baby
-            character_combo_array.append(overall.koopa_baby)
-            character_combo_count_array.append(overall.koopa_baby_count)
+            t2combo = 'koopa_baby'
+            t2combocount = 'koopa_baby_count'
         elif (team2character1name == "K" and team2character2name == "K"):
             team2zscore = overall.koopa_koopa
-            character_combo_array.append(overall.koopa_koopa)
-            character_combo_count_array.append(overall.koopa_koopa_count)
+            t2combo = 'koopa_koopa'
+            t2combocount = 'koopa_koopa_count'
         elif (team2character1name == "B" and team2character2name == "B"):
             team2zscore = overall.baby_baby
-            character_combo_array.append(overall.baby_baby)
-            character_combo_count_array.append(overall.baby_baby_count)
+            t2combo = 'baby_baby'
+            t2combocount = 'baby_baby_count'
 
         if (team3character1name == "T" and team3character2name == "BJ"):
             team3zscore = overall.toad_bowser
-            character_combo_array.append(overall.toad_bowser)
-            character_combo_count_array.append(overall.toad_bowser_count)
+            t3combo = 'toad_bowser'
+            t3combocount = 'toad_bowser_count'
         elif (team3character1name == "T" and team3character2name == "DK"):
             team3zscore = overall.toad_diddy
-            character_combo_array.append(overall.toad_diddy)
-            character_combo_count_array.append(overall.toad_diddy_count)
+            t3combo = 'toad_diddy'
+            t3combocount = 'toad_diddy_count'
         elif (team3character1name == "T" and team3character2name == "K"):
             team3zscore = overall.toad_koopa
-            character_combo_array.append(overall.toad_koopa)
-            character_combo_count_array.append(overall.toad_koopa_count)
+            t3combo = 'toad_koopa'
+            t3combocount = 'toad_koopa_count'
         elif (team3character1name == "T" and team3character2name == "B"):
             team3zscore = overall.toad_baby
-            character_combo_array.append(overall.toad_baby)
-            character_combo_count_array.append(overall.toad_baby_count)
+            t3combo = 'toad_baby'
+            t3combocount = 'toad_baby_count'
         elif (team3character1name == "BJ" and team3character2name == "DK"):
             team3zscore = overall.bowser_diddy
-            character_combo_array.append(overall.bowser_diddy)
-            character_combo_count_array.append(overall.bowser_diddy_count)
+            t3combo = 'bowser_diddy'
+            t3combocount = 'bowser_diddy_count'
         elif (team3character1name == "BJ" and team3character2name == "K"):
             team3zscore = overall.bowser_koopa
-            character_combo_array.append(overall.bowser_koopa)
-            character_combo_count_array.append(overall.bowser_koopa_count)
+            t3combo = 'bowser_koopa'
+            t3combocount = 'bowser_koopa_count'
         elif (team3character1name == "BJ" and team3character2name == "B"):
             team3zscore = overall.bowser_baby
-            character_combo_array.append(overall.bowser_baby)
-            character_combo_count_array.append(overall.bowser_baby_count)
+            t3combo = 'bowser_baby'
+            t3combocount = 'bowser_baby_count'
         elif (team3character1name == "DK" and team3character2name == "K"):
             team3zscore = overall.diddy_koopa
-            character_combo_array.append(overall.diddy_koopa)
-            character_combo_count_array.append(overall.diddy_koopa_count)
+            t3combo = 'diddy_koopa'
+            t3combocount = 'diddy_koopa_count'
         elif (team3character1name == "DK" and team3character2name == "B"):
             team3zscore = overall.diddy_baby
-            character_combo_array.append(overall.diddy_baby)
-            character_combo_count_array.append(overall.diddy_baby_count)
+            t3combo = 'diddy_baby'
+            t3combocount = 'diddy_baby_count'
         elif (team3character1name == "K" and team3character2name == "B"):
             team3zscore = overall.koopa_baby
-            character_combo_array.append(overall.koopa_baby)
-            character_combo_count_array.append(overall.koopa_baby_count)
+            t3combo = 'koopa_baby'
+            t3combocount = 'koopa_baby_count'
         elif (team3character1name == "K" and team3character2name == "K"):
             team3zscore = overall.koopa_koopa
-            character_combo_array.append(overall.koopa_koopa)
-            character_combo_count_array.append(overall.koopa_koopa_count)
+            t3combo = 'koopa_koopa'
+            t3combocount = 'koopa_koopa_count'
         elif (team3character1name == "B" and team3character2name == "B"):
             team3zscore = overall.baby_baby
-            character_combo_array.append(overall.baby_baby)
-            character_combo_count_array.append(overall.baby_baby_count)
+            t3combo = 'baby_baby'
+            t3combocount = 'baby_baby_count'
 
         if (team4character1name == "T" and team4character2name == "BJ"):
             team4zscore = overall.toad_bowser
-            character_combo_array.append(overall.toad_bowser)
-            character_combo_count_array.append(overall.toad_bowser_count)
+            t4combo = 'toad_bowser'
+            t4combocount = 'toad_bowser_count'
         elif (team4character1name == "T" and team4character2name == "DK"):
             team4zscore = overall.toad_diddy
-            character_combo_array.append(overall.toad_diddy)
-            character_combo_count_array.append(overall.toad_diddy_count)
+            t4combo = 'toad_diddy'
+            t4combocount = 'toad_diddy_count'
         elif (team4character1name == "T" and team4character2name == "K"):
             team4zscore = overall.toad_koopa
-            character_combo_array.append(overall.toad_koopa)
-            character_combo_count_array.append(overall.toad_koopa_count)
+            t4combo = 'toad_koopa'
+            t4combocount = 'toad_koopa_count'
         elif (team4character1name == "T" and team4character2name == "B"):
             team4zscore = overall.toad_baby
-            character_combo_array.append(overall.toad_baby)
-            character_combo_count_array.append(overall.toad_baby_count)
+            t4combo = 'toad_baby'
+            t4combocount = 'toad_baby_count'
         elif (team4character1name == "BJ" and team4character2name == "DK"):
             team4zscore = overall.bowser_diddy
-            character_combo_array.append(overall.bowser_diddy)
-            character_combo_count_array.append(overall.bowser_diddy_count)
+            t4combo = 'bowser_diddy'
+            t4combocount = 'bowser_diddy_count'
         elif (team4character1name == "BJ" and team4character2name == "K"):
             team4zscore = overall.bowser_koopa
-            character_combo_array.append(overall.bowser_koopa)
-            character_combo_count_array.append(overall.bowser_koopa_count)
+            t4combo = 'bowser_koopa'
+            t4combocount = 'bowser_koopa_count'
         elif (team4character1name == "BJ" and team4character2name == "B"):
             team4zscore = overall.bowser_baby
-            character_combo_array.append(overall.bowser_baby)
-            character_combo_count_array.append(overall.bowser_baby_count)
+            t4combo = 'bowser_baby'
+            t4combocount = 'bowser_baby_count'
         elif (team4character1name == "DK" and team4character2name == "K"):
             team4zscore = overall.diddy_koopa
-            character_combo_array.append(overall.diddy_koopa)
-            character_combo_count_array.append(overall.diddy_koopa_count)
+            t4combo = 'diddy_koopa'
+            t4combocount = 'diddy_koopa_count'
         elif (team4character1name == "DK" and team4character2name == "B"):
             team4zscore = overall.diddy_baby
-            character_combo_array.append(overall.diddy_baby)
-            character_combo_count_array.append(overall.diddy_baby_count)
+            t4combo = 'diddy_baby'
+            t4combocount = 'diddy_baby_count'
         elif (team4character1name == "K" and team4character2name == "B"):
             team4zscore = overall.koopa_baby
-            character_combo_array.append(overall.koopa_baby)
-            character_combo_count_array.append(overall.koopa_baby_count)
+            t4combo = 'koopa_baby'
+            t4combocount = 'koopa_baby_count'
         elif (team4character1name == "K" and team4character2name == "K"):
             team4zscore = overall.koopa_koopa
-            character_combo_array.append(overall.koopa_koopa)
-            character_combo_count_array.append(overall.koopa_koopa_count)
+            t4combo = 'koopa_koopa'
+            t4combocount = 'koopa_koopa_count'
         elif (team4character1name == "B" and team4character2name == "B"):
             team4zscore = overall.baby_baby
-            character_combo_array.append(overall.baby_baby)
-            character_combo_count_array.append(overall.baby_baby_count)
+            t4combo = 'baby_baby'
+            t4combocount = 'baby_baby_count'
 
-        
+        character_combo_array = [t1combo, t2combo, t3combo, t4combo]
+        character_combo_count_array = [t1combocount, t2combocount, t3combocount, t4combocount]
 
         #Calculated elo distribution sd
         elo_distribution_sd = 118.2991
+        print("team z scores")
         print(team1zscore)
-        t1p1_adj_elo = t1p1.elo + elo_distribution_sd*team1zscore
-        t1p2_adj_elo = t1p2.elo + elo_distribution_sd*team1zscore
-        t2p1_adj_elo = t2p1.elo + elo_distribution_sd*team2zscore
-        t2p2_adj_elo = t2p2.elo + elo_distribution_sd*team2zscore
-        t3p1_adj_elo = t3p1.elo + elo_distribution_sd*team3zscore
-        t3p2_adj_elo = t3p2.elo + elo_distribution_sd*team3zscore
-        t4p1_adj_elo = t4p1.elo + elo_distribution_sd*team4zscore
-        t4p2_adj_elo = t4p2.elo + elo_distribution_sd*team4zscore
+        print(team2zscore)
+        print(team3zscore)
+        print(team4zscore)
+        if (overall.score_count < 80):
+            t1p1_adj_elo = t1p1.elo
+            t1p2_adj_elo = t1p1.elo
+            t2p1_adj_elo = t1p1.elo
+            t2p2_adj_elo = t1p1.elo
+            t3p1_adj_elo = t1p1.elo
+            t3p2_adj_elo = t1p1.elo
+            t4p1_adj_elo = t1p1.elo
+            t4p2_adj_elo = t1p1.elo
+        else:
+            t1p1_adj_elo = t1p1.elo + elo_distribution_sd*team1zscore
+            t1p2_adj_elo = t1p2.elo + elo_distribution_sd*team1zscore
+            t2p1_adj_elo = t2p1.elo + elo_distribution_sd*team2zscore
+            t2p2_adj_elo = t2p2.elo + elo_distribution_sd*team2zscore
+            t3p1_adj_elo = t3p1.elo + elo_distribution_sd*team3zscore
+            t3p2_adj_elo = t3p2.elo + elo_distribution_sd*team3zscore
+            t4p1_adj_elo = t4p1.elo + elo_distribution_sd*team4zscore
+            t4p2_adj_elo = t4p2.elo + elo_distribution_sd*team4zscore
+
+        print("elo dist sd")
+        print(elo_distribution_sd)
+        print("adj elo")
+        print(t1p1_adj_elo)
+        print(t1p2_adj_elo)
+        print(t2p1_adj_elo)
+        print(t2p2_adj_elo)
+        print(t3p1_adj_elo)
+        print(t3p2_adj_elo)
+        print(t4p1_adj_elo)
+        print(t4p2_adj_elo)
 
 #CALCULATE TEAM, COMPETITOR ELOS
         t1_elo = (t1p1_adj_elo + t1p2_adj_elo)/2
@@ -553,6 +584,11 @@ def enterTeamData(request):
         t3Comp = (t1_elo + t2_elo + t4_elo)/3
         t4Comp = (t1_elo + t2_elo + t3_elo)/3
 
+        t1Comp_unadj = (t2p1.elo + t2p2.elo + t3p1.elo + t3p2.elo + t4p1.elo + t4p2.elo)/6
+        t2Comp_unadj = (t1p1.elo + t1p2.elo + t3p1.elo + t3p2.elo + t4p1.elo + t4p2.elo)/6
+        t3Comp_unadj = (t1p1.elo + t1p2.elo + t2p1.elo + t2p2.elo + t4p1.elo + t4p2.elo)/6
+        t4Comp_unadj = (t1p1.elo + t1p2.elo + t2p1.elo + t2p2.elo + t3p1.elo + t3p2.elo)/6
+
 #EXPECTED POINTS
         t1p1_exp_pts_z = (t1p1_adj_elo - t1Comp)/elo_distribution_sd
         t1p2_exp_pts_z = (t1p2_adj_elo - t1Comp)/elo_distribution_sd
@@ -563,6 +599,25 @@ def enterTeamData(request):
         t4p1_exp_pts_z = (t4p1_adj_elo - t4Comp)/elo_distribution_sd
         t4p2_exp_pts_z = (t4p2_adj_elo - t4Comp)/elo_distribution_sd
 
+        t1p1_exp_pts_z_unadj = (t1p1.elo - t1Comp_unadj)/elo_distribution_sd
+        t1p2_exp_pts_z_unadj = (t1p2.elo - t1Comp_unadj)/elo_distribution_sd
+        t2p1_exp_pts_z_unadj = (t2p1.elo - t2Comp_unadj)/elo_distribution_sd
+        t2p2_exp_pts_z_unadj = (t2p2.elo - t2Comp_unadj)/elo_distribution_sd
+        t3p1_exp_pts_z_unadj = (t3p1.elo - t3Comp_unadj)/elo_distribution_sd
+        t3p2_exp_pts_z_unadj = (t3p2.elo - t3Comp_unadj)/elo_distribution_sd
+        t4p1_exp_pts_z_unadj = (t4p1.elo - t4Comp_unadj)/elo_distribution_sd
+        t4p2_exp_pts_z_unadj = (t4p2.elo - t4Comp_unadj)/elo_distribution_sd
+
+        print("exp pts_z")
+        print(t1p1_exp_pts_z)
+        print(t1p2_exp_pts_z)
+        print(t2p1_exp_pts_z)
+        print(t2p2_exp_pts_z)
+        print(t3p1_exp_pts_z)
+        print(t3p2_exp_pts_z)
+        print(t4p1_exp_pts_z)
+        print(t4p2_exp_pts_z)
+
         t1p1_exp_pts_raw = t1p1_exp_pts_z*overall.score_sd + 12
         t1p2_exp_pts_raw = t1p2_exp_pts_z*overall.score_sd + 12
         t2p1_exp_pts_raw = t2p1_exp_pts_z*overall.score_sd + 12
@@ -572,6 +627,27 @@ def enterTeamData(request):
         t4p1_exp_pts_raw = t4p1_exp_pts_z*overall.score_sd + 12
         t4p2_exp_pts_raw = t4p2_exp_pts_z*overall.score_sd + 12
 
+        t1p1_exp_pts_raw_unadj = t1p1_exp_pts_z_unadj*overall.score_sd + 12
+        t1p2_exp_pts_raw_unadj = t1p2_exp_pts_z_unadj*overall.score_sd + 12
+        t2p1_exp_pts_raw_unadj = t2p1_exp_pts_z_unadj*overall.score_sd + 12
+        t2p2_exp_pts_raw_unadj = t2p2_exp_pts_z_unadj*overall.score_sd + 12
+        t3p1_exp_pts_raw_unadj = t3p1_exp_pts_z_unadj*overall.score_sd + 12
+        t3p2_exp_pts_raw_unadj = t3p2_exp_pts_z_unadj*overall.score_sd + 12
+        t4p1_exp_pts_raw_unadj = t4p1_exp_pts_z_unadj*overall.score_sd + 12
+        t4p2_exp_pts_raw_unadj = t4p2_exp_pts_z_unadj*overall.score_sd + 12
+        
+        print("score sd")
+        print(overall.score_sd)
+        print("exp pts raw")
+        print(t1p1_exp_pts_raw)
+        print(t1p2_exp_pts_raw)
+        print(t2p1_exp_pts_raw)
+        print(t2p2_exp_pts_raw)
+        print(t3p1_exp_pts_raw)
+        print(t3p2_exp_pts_raw)
+        print(t4p1_exp_pts_raw)
+        print(t4p2_exp_pts_raw)
+
         t1p1_exp_pts = t1p1_exp_pts_raw*(48/(36+t1p1_exp_pts_raw))
         t1p2_exp_pts = t1p2_exp_pts_raw*(48/(36+t1p2_exp_pts_raw))
         t2p1_exp_pts = t2p1_exp_pts_raw*(48/(36+t2p1_exp_pts_raw))
@@ -580,6 +656,27 @@ def enterTeamData(request):
         t3p2_exp_pts = t3p2_exp_pts_raw*(48/(36+t3p2_exp_pts_raw))
         t4p1_exp_pts = t4p1_exp_pts_raw*(48/(36+t4p1_exp_pts_raw))
         t4p2_exp_pts = t4p2_exp_pts_raw*(48/(36+t4p2_exp_pts_raw))
+
+        t1p1_exp_pts_unadj = t1p1_exp_pts_raw_unadj*(48/(36+t1p1_exp_pts_raw_unadj))
+        t1p2_exp_pts_unadj = t1p2_exp_pts_raw_unadj*(48/(36+t1p2_exp_pts_raw_unadj))
+        t2p1_exp_pts_unadj = t2p1_exp_pts_raw_unadj*(48/(36+t2p1_exp_pts_raw_unadj))
+        t2p2_exp_pts_unadj = t2p2_exp_pts_raw_unadj*(48/(36+t2p2_exp_pts_raw_unadj))
+        t3p1_exp_pts_unadj = t3p1_exp_pts_raw_unadj*(48/(36+t3p1_exp_pts_raw_unadj))
+        t3p2_exp_pts_unadj = t3p2_exp_pts_raw_unadj*(48/(36+t3p2_exp_pts_raw_unadj))
+        t4p1_exp_pts_unadj = t4p1_exp_pts_raw_unadj*(48/(36+t4p1_exp_pts_raw_unadj))
+        t4p2_exp_pts_unadj = t4p2_exp_pts_raw_unadj*(48/(36+t4p2_exp_pts_raw_unadj))
+
+        exp_pts_unadj_array = [t1p1_exp_pts_unadj,t1p2_exp_pts_unadj,t2p1_exp_pts_unadj,t2p2_exp_pts_unadj,t3p1_exp_pts_unadj,t3p2_exp_pts_unadj,t4p1_exp_pts_unadj,t4p2_exp_pts_unadj]
+
+        print("exp pts")
+        print(t1p1_exp_pts)
+        print(t1p2_exp_pts)
+        print(t2p1_exp_pts)
+        print(t2p2_exp_pts)
+        print(t3p1_exp_pts)
+        print(t3p2_exp_pts)
+        print(t4p1_exp_pts)
+        print(t4p2_exp_pts)
 
 #TEAM POINTS
         t1_points = team1player1 + team1player2
@@ -601,9 +698,10 @@ def enterTeamData(request):
         t4p2_elochange = 0
 
 #CHANGES IN TEAMMATE ELO, COMPETITOR ELO
-        """     
+        """    
         Competitor elo is changed lower down right now, but teammate elo has to be updated before the results affect elo, so we should move both stats up here for clarity
         ***THIS DATA HAS ADJUSTED ELO FROM CHARACTERS NOW -- DO WE WANT THAT
+        
         t1p1.accum_competitor_elo += t1Comp
         t1p2.accum_competitor_elo += t1Comp
         t2p1.accum_competitor_elo += t2Comp
@@ -622,15 +720,26 @@ def enterTeamData(request):
         t4p1.accum_teammate_elo += t4p2.elo
         t4p2.accum_teammate_elo += t4p1.elo
         """
+        
 #CALCULATING INDIV ELO CHANGES
-        t1p1_elochange += (team1player1 - t1p1_exp_pts)*2*(((team1player1 - t1p1_exp_pts)**0.8)/6.9)*3
-        t1p2_elochange += (team1player2 - t1p2_exp_pts)*2*(((team1player2 - t1p2_exp_pts)**0.8)/6.9)*3
-        t2p1_elochange += (team2player1 - t2p1_exp_pts)*2*(((team2player1 - t2p1_exp_pts)**0.8)/6.9)*3
-        t2p2_elochange += (team2player2 - t2p2_exp_pts)*2*(((team2player2 - t2p2_exp_pts)**0.8)/6.9)*3
-        t3p1_elochange += (team3player1 - t3p1_exp_pts)*2*(((team3player1 - t3p1_exp_pts)**0.8)/6.9)*3
-        t3p2_elochange += (team3player2 - t3p2_exp_pts)*2*(((team3player2 - t3p2_exp_pts)**0.8)/6.9)*3
-        t4p1_elochange += (team4player1 - t4p1_exp_pts)*2*(((team4player1 - t4p1_exp_pts)**0.8)/6.9)*3
-        t4p2_elochange += (team4player2 - t4p2_exp_pts)*2*(((team4player2 - t4p2_exp_pts)**0.8)/6.9)*3
+        t1p1_elochange += (team1player1 - t1p1_exp_pts)*2*(((abs(team1player1 - t1p1_exp_pts))**0.8)/6.9)*3
+        t1p2_elochange += (team1player2 - t1p2_exp_pts)*2*(((abs(team1player2 - t1p2_exp_pts))**0.8)/6.9)*3
+        t2p1_elochange += (team2player1 - t2p1_exp_pts)*2*(((abs(team2player1 - t2p1_exp_pts))**0.8)/6.9)*3
+        t2p2_elochange += (team2player2 - t2p2_exp_pts)*2*(((abs(team2player2 - t2p2_exp_pts))**0.8)/6.9)*3
+        t3p1_elochange += (team3player1 - t3p1_exp_pts)*2*(((abs(team3player1 - t3p1_exp_pts))**0.8)/6.9)*3
+        t3p2_elochange += (team3player2 - t3p2_exp_pts)*2*(((abs(team3player2 - t3p2_exp_pts))**0.8)/6.9)*3
+        t4p1_elochange += (team4player1 - t4p1_exp_pts)*2*(((abs(team4player1 - t4p1_exp_pts))**0.8)/6.9)*3
+        t4p2_elochange += (team4player2 - t4p2_exp_pts)*2*(((abs(team4player2 - t4p2_exp_pts))**0.8)/6.9)*3
+        
+        print("indiv elochange")
+        print(t1p1_elochange)
+        print(t1p2_elochange)
+        print(t2p1_elochange)
+        print(t2p2_elochange)
+        print(t3p1_elochange)
+        print(t3p2_elochange)
+        print(t4p1_elochange)
+        print(t4p2_elochange)
 
 #CALCULATING TEAM ELO CHANGES
         if(t1_points != t2_points):
@@ -851,22 +960,33 @@ def enterTeamData(request):
         score_list = [team1player1, team1player2, team2player1, team2player2, team3player1, team3player2, team4player1, team4player2]
 
         for score in score_list:
-            new_variance = (overall.score_sd)**2 + (score - (overall.total_score + score)/(overall.score_count+1))*(score-overall.total_score/overall.score_count)
+            print("SCORE SD:")
+            print(overall.score_sd)
+            overall.sum_sq = overall.sum_sq + score * score
             overall.score_count += 1
-            overall.score_sd = math.sqrt(new_variance)
+            overall.total_score += score
+
+        new_variance = (overall.sum_sq - (overall.total_score * overall.total_score)/overall.score_count)/overall.score_count
+        overall.score_sd = math.sqrt(new_variance)
+        overall.save()
         #return redirect('ranks:data2')
         
 #UPDATE CHARACTER HANDICAPS
+
+
         counter = 0
         for score in score_list:
             index = int(counter/2) #finds the correct team
-            char_count = character_combo_count_array[index]
-            old_z = character_combo_array[index]
+            print(character_combo_count_array[index])
+            char_count = getattr(overall, character_combo_count_array[index])
+            old_z = getattr(overall, character_combo_array[index])
             old_char_avg = 12 + old_z*overall.score_sd
-            new_char_avg = (old_char_avg + score)/(char_count + 1)
-            character_combo_array[index] = (new_char_avg - 12)/overall.score_sd
+            new_char_avg = (old_char_avg*char_count + (12*(score/exp_pts_unadj_array[counter])))/(char_count + 1)
+            setattr(overall, character_combo_array[index], (new_char_avg - 12)/overall.score_sd)
             counter+=1
-            character_combo_count_array[index]+=1
+            setattr(overall, character_combo_count_array[index], getattr(overall, character_combo_count_array[index]) + 1)
+        
+        overall.save()
         
 #RENDER
     return render(request, 'ranks/teamData.html', {})
