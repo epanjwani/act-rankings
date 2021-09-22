@@ -545,13 +545,13 @@ def enterTeamData(request):
         print(team4zscore)
         if (overall.score_count < 80):
             t1p1_adj_elo = t1p1.elo
-            t1p2_adj_elo = t1p1.elo
-            t2p1_adj_elo = t1p1.elo
-            t2p2_adj_elo = t1p1.elo
-            t3p1_adj_elo = t1p1.elo
-            t3p2_adj_elo = t1p1.elo
-            t4p1_adj_elo = t1p1.elo
-            t4p2_adj_elo = t1p1.elo
+            t1p2_adj_elo = t1p2.elo
+            t2p1_adj_elo = t2p1.elo
+            t2p2_adj_elo = t2p2.elo
+            t3p1_adj_elo = t3p1.elo
+            t3p2_adj_elo = t3p2.elo
+            t4p1_adj_elo = t4p1.elo
+            t4p2_adj_elo = t4p2.elo
         else:
             t1p1_adj_elo = t1p1.elo + elo_distribution_sd*team1zscore
             t1p2_adj_elo = t1p2.elo + elo_distribution_sd*team1zscore
